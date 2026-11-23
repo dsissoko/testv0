@@ -10,6 +10,8 @@
 3. **Planification :** les contrôles quotidiens utilisent **Vercel Cron Hobby** avec traitement par lots, état persistant, anti-chevauchement, reprise et respect des quotas. Une heure exacte n'est pas garantie.
 4. **Fournisseur pilote :** **World Bank API**, API publique sans clé, pour le premier parcours CSV → API catalogue → MCP local → API fournisseur directe.
 
+5. **Contrainte non négociable :** la V1 doit être exploitable sur **Vercel Hobby** sans upgrade Pro ni fonctionnalité payante obligatoire. L'architecture et les critères d'acceptation doivent être conçus et testés dans les limites réelles du plan, en respectant ses conditions d'usage (dont restrictions commerciales). Si un besoin est incompatible, réduire ou adapter le mécanisme plutôt que présupposer un upgrade.
+
 ## Conséquences
 - Documenter et tester la source et la ressource World Bank précises avant implémentation.
 - Ne pas confondre choix d'authentification applicative et sélection d'un fournisseur d'identité : ce dernier reste ouvert.
