@@ -30,3 +30,6 @@ Proxy des données, copie générale des datasets, marketplace payante, héberge
 
 ## Questions encore ouvertes
 Choix de la bibliothèque/fournisseur d'identité, nom npm, sélection précise de l'indicateur World Bank, conformité aux quotas et conditions Hobby.
+
+## Contrainte de déploiement non négociable
+La V1 doit fonctionner sur **Vercel Hobby**, sans upgrade Pro ni dépendance obligatoire à une fonctionnalité payante. La conformité aux conditions d'utilisation du plan, notamment pour un éventuel usage commercial, est une condition de lancement.
