@@ -12,6 +12,12 @@
 - Un cron déclenche une route de fonction, pas un worker permanent. Exécuter les vérifications en lots bornés, conserver curseur/état et rejouer les échecs; prévoir un secret de cron et un mécanisme anti-chevauchement.
 - Les contrôles d'un grand nombre de sources ne doivent pas dépendre d'une seule fonction longue; vérifier limites effectives de durée, quotas, concurrence et coûts. Alternative à arbitrer : GitHub Actions planifié ou scheduler externe.
 
+## Décisions du 23 novembre 2026
+- **Retenu :** authentification applicative dédiée pour `/admin`, sans bloquer le catalogue public.
+- **Retenu :** Vercel Cron Hobby pour les contrôles quotidiens, avec lots, état persistant, reprise et verrouillage.
+- **À définir :** fournisseur d'identité/bibliothèque de session; seuils de lot, métriques et garde-fous selon les quotas réels.
+- GitHub Actions/scheduler externe reste un plan de repli technique, **pas le choix actuel**.
+
 ## Conditions et décisions
 - [Plan Hobby](https://vercel.com/docs/plans/hobby) : vérifier l'adéquation avec la nature et l'usage réel du projet avant déploiement (notamment conditions d'usage non commercial).
 - Recommandation : Vercel pour portail/API, auth applicative dédiée; cron quotidien uniquement si le volume réel et les limites de fonctions le permettent. Un service de vérification séparé reste une option.
