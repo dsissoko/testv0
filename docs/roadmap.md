@@ -11,7 +11,7 @@
 | M5 — Enrichissement | Sources et connecteurs étendus dans les 13 familles | nouveaux fournisseurs/ressources/contrats, couverture et qualité mesurées |
 
 ## Tranche verticale prioritaire
-Dès M1, créer les 13 familles; valider en parallèle une source publique sans clé de bout en bout (CSV → Neon → API → MCP). Ne pas confondre couverture taxonomique et couverture opérationnelle.
+Dès M1, créer les **13 familles approuvées**; valider en parallèle **World Bank API** comme première source publique sans clé de bout en bout (CSV → Neon → API → MCP). L'authentification de l'administration sera **applicative** et les contrôles quotidiens seront orchestrés par **Vercel Cron Hobby** (lots, reprise, limites documentées). Ne pas confondre couverture taxonomique et couverture opérationnelle.
 
 ## Gouvernance
 Backlog GitHub, issues avec critères vérifiables, PR par lot cohérent, pas de merge ni release sans approbation. Étude concurrentielle et contraintes Hobby à documenter avant choix final de l'architecture.
