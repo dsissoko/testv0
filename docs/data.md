@@ -1,15 +1,21 @@
-# Data management contract
+# World Data MCP — Gestion des données
 
-**Status:** template.
+**Statut :** contrat initial, aucune migration appliquée.
 
-## Data classes
-1. **Schema**: versioned migrations and constraints.
-2. **Reference data**: shared, reviewed, versioned domain datasets.
-3. **Environment seed**: separate preview fixtures and explicitly approved production initial records.
-4. **Runtime data**: user-generated/persistent records, never overwritten by routine imports.
+## Classes de données
+1. **Schéma** : migrations SQL ordonnées, versionnées et non destructives par défaut.
+2. **Référentiel** : gisements et sources initiales en fichiers versionnés (CSV ou JSON), clés métier stables, provenance et licence.
+3. **Fixtures preview** : jeux de test isolés, jamais importés en production.
+4. **Données d'exploitation** : vérifications horodatées, publications et journal d'administration, non écrasées par import.
 
-## Proposed commands (adapt to stack)
-`db:status`, `db:init`, `db:migrate`, `db:import`, `db:check`, each supporting explicit environment selection and dry-run where meaningful. Default to no writes. For destructive reset require separate confirmation.
+## Entités envisagées
+`gisement`, `source`, `access_contract`, `verification_run`, `catalog_revision`, `catalog_entry`, `audit_event`.
 
-## Import contract
-Stable business keys, deterministic mapping, validation before mutation, transaction or compensating strategy, idempotency, import report and provenance when relevant. Verify import twice on disposable QA. Preview data must not contaminate production. Document migration and rollback compatibility.
+## Contrat d'import
+Validation structurelle déterministe; dry-run, détection des différences, upsert idempotent, transaction, journal de provenance, vérification des contraintes et réexécution sans doublons. Pas de réinitialisation silencieuse.
+
+## Contrats publics
+Schéma JSON versionné, validation stricte, champs obligatoires d'endpoint/paramètres/auth, aucun secret et aucun script arbitraire. Publier seulement des révisions validées.
+
+## Environnements
+Neon production séparé des branches PR; previews avec schéma et fixtures approuvées, pas de données sensibles copiées. Aucun provisionnement ou import production sans autorisation.
