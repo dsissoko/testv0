@@ -29,5 +29,11 @@ Monorepo envisagé `apps/portal`, `packages/mcp`, `packages/contracts`, `db/`, `
 ## Exploitation
 Vercel Hobby envisagé : cron quotidien par tâche avec déclenchement non précis; orchestrer par lots avec état persistant et reprise. Vérifier quotas de fonctions, durée et conditions d'usage avant déploiement. Neon avec branches preview isolées, migrations/CSV dry-run, production sur approbation.
 
-## Arbitrages
-Auth admin applicative; planificateur Hobby ou GitHub Actions/externe; fournisseur pilote; nom npm. Voir `docs/research/competitive-landscape.md` et `docs/research/vercel-hobby.md`.
+## Décisions validées — 2026-11-23
+- **Authentification applicative administrateur** : sessions sécurisées et autorisation serveur; fournisseur d'identité à sélectionner ultérieurement.
+- **Vercel Cron Hobby quotidien** : contrôles bornés, persistants, idempotents, avec verrou anti-chevauchement et reprise; pas de promesse d'heure précise.
+- **World Bank API** : premier fournisseur sans clé, contrat et ressource pilote à documenter; aucun appel fournisseur ne transite par le service central.
+- **13 gisements** : taxonomie approuvée, initialisation obligatoire par CSV.
+
+## Questions techniques ouvertes
+Nom npm, mécanisme précis de session admin, endpoint/indicateur World Bank, vérification des limites et conditions Hobby. Voir `docs/research/competitive-landscape.md` et `docs/research/vercel-hobby.md`.
