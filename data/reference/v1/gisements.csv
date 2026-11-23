@@ -1,0 +1,14 @@
+gisement_id,slug,name,description,status
+G01,recherche-scientifique,Recherche scientifique,Publications et métadonnées de recherche,active
+G02,donnees-scientifiques,Jeux de données scientifiques,Datasets et archives scientifiques,active
+G03,ia-machine-learning,Intelligence artificielle et machine learning,Modèles benchmarks et jeux de données IA,active
+G04,connaissances-structurees,Connaissances structurées,Graphes de connaissances et référentiels,active
+G05,web-mondial,Web mondial,Index et ressources du Web,active
+G06,actualite-evenements,Actualité et événements,Actualités événements et chronologies,active
+G07,finance-marches,Finance et marchés,Marchés financiers et données de prix,active
+G08,blockchain-web3,Blockchain et Web3,Chaînes publiques et données on-chain,active
+G09,entreprises-economie,Entreprises et économie,Registres d'entreprises et indicateurs économiques,active
+G10,geospatial-environnement,Géospatial et environnement,Cartographie climat et environnement,active
+G11,logiciel-cybersecurite,Logiciel et cybersécurité,Code vulnérabilités et écosystèmes logiciels,active
+G12,culture-patrimoine,Culture et patrimoine,Collections et ressources culturelles,active
+G13,institutionnel-gouvernemental,Données institutionnelles et gouvernementales,Portails publics et statistiques officielles,active
