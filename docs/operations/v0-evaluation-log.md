@@ -16,5 +16,8 @@ Ce fichier est un **journal de projet** ajouté sur la branche de PR #1. Il ne m
 ## Observations sur le template
 Le template **contient** les garde-fous nécessaires (vocabulaire métier avant schéma, data déterministe, sources d'autorité GitHub, phases d'approbation). Les écarts proviennent probablement de leur **application incomplète par l'agent**, non d'une absence de règles. Ne pas modifier le template sur la base de cette seule exécution.
 
+## Arbitrages utilisateur — 2026-11-23
+L'utilisateur a validé : authentification applicative, Vercel Cron Hobby, fournisseur pilote World Bank et taxonomie des 13 gisements. Ces décisions sont propagées dans vision, architecture, roadmap et note Hobby, sans modification du template ni implémentation.
+
 ## Vérification et limites
 Évaluation qualitative sur une exécution; aucune mesure comparative inter-agents, aucun test d'application ni import Neon effectué. La correction documentaire doit être relue avant validation. Voir [scénarios d'acceptation v0](agent-evaluation.md).
