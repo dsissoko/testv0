@@ -1,29 +1,26 @@
 # World Data MCP — Vision produit
 
-**Statut :** cadrage initial, à valider en PR.
+**Statut :** cadrage V1, PR #1.
 
-## Problème et utilisateurs
-Les agents ont besoin d'accéder à des sources de données fiables, hétérogènes et évolutives. Leurs utilisateurs doivent aujourd'hui découvrir les APIs, comprendre leurs contrats, configurer des connecteurs et surveiller leur disponibilité.
+## Besoin
+Permettre aux agents de découvrir, comprendre et interroger des données ouvertes ou accessibles par API sans multiplier les connecteurs spécifiques. Le produit référence la provenance, la licence, la couverture et la qualité observée.
 
-## Promesse
-Un catalogue public de gisements et sources, maintenu et contrôlé régulièrement, accessible sur un portail et par un serveur MCP local universel. Les données sont interrogées **directement chez les fournisseurs**, sans transit par notre service.
+## Livrables
+- **Portail + API centrale** : catalogue public des 13 familles de gisements, fournisseurs, sources, ressources et contrats; administration protégée; vérifications et historique.
+- **MCP npm local** : installation `npx -y <nom-package>`, stdio, découverte/description/interrogation, appels HTTPS directs aux fournisseurs, secrets et cache locaux.
 
-## Deux livrables
-1. **Portail et API centrale** : explorer les gisements/sources, consulter la documentation, l'état des tests et les contrats; espace d'administration protégé pour gérer le catalogue.
-2. **Package MCP npm public** : démarrage par `npx -y <package>`, transport stdio, clients Claude Desktop/OpenCode, catalogue distant mis en cache, appels directs aux APIs fournisseurs.
+## Invariants V1
+- 13 gisements présents dès l'initialisation par CSV versionnés.
+- Une famille peut être initialement sans source opérationnelle; l'enrichissement concerne les sources, ressources et connecteurs.
+- Catalogue actualisé indépendamment des versions npm.
+- Aucun compte central pour les fonctions publiques, aucun secret fournisseur envoyé au central.
+- Exécution Windows/Linux/macOS sans Docker côté utilisateur.
 
-## Principes
-- Lecture publique sans compte World Data MCP; administration authentifiée.
-- Secrets fournisseurs locaux, jamais transmis à l'API centrale.
-- Catalogue mis à jour indépendamment des versions du package.
-- Vérifications de disponibilité et de contrats horodatées; ne pas confondre test réussi et garantie de disponibilité.
-- Source ouverte, installation Windows/Linux/macOS, pas de Docker requis côté utilisateur.
+## Premier parcours vérifiable
+Catalogue CSV → import contrôlé → API et portail → recherche MCP → description de contrat → interrogation d'une source publique sans clé. Ensuite clé locale, cache, dégradation et publication npm contrôlée.
 
-## Hors périmètre initial
-Proxy des réponses fournisseurs, stockage des secrets des utilisateurs, hébergement d'un MCP individuel par utilisateur, paiement, garanties de disponibilité des fournisseurs.
+## Non-objectifs initiaux
+Proxy des données, copie générale des datasets, marketplace payante, hébergement d'un MCP par utilisateur.
 
-## Premier résultat observable
-Depuis un client MCP, rechercher une source du catalogue et interroger une API publique sans clé; le portail montre la même source et son dernier état vérifié. Puis démontrer clé locale et mode dégradé.
-
-## Questions ouvertes
-Nom npm disponible; choix de fournisseurs initiaux et licences; cadence/quotas des contrôles; hébergement et authentification admin Vercel Hobby à confirmer; concurrence à documenter.
+## Risques à arbitrer
+Choix des sources pilotes, licence des données, solution d'authentification administrateur, planification et quotas Hobby, nom npm.
