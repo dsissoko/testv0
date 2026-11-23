@@ -1,36 +1,33 @@
-# World Data MCP — Architecture cible
+# World Data MCP — Architecture V1
 
-**Statut :** proposition à valider avant implémentation.
+**Statut :** proposition révisée; aucun code applicatif implémenté.
 
-## Composants
 ```mermaid
 flowchart TB
-  Admin["Administrateur"] --> Web["Portail web / Admin"]
-  Visitor["Visiteur"] --> Web
-  Web --> API["API publique + admin"]
-  API --> DB[("Neon PostgreSQL")]
-  Scheduler["Contrôles planifiés"] --> API
-  Agent["Claude / OpenCode / autre client"] <-->|"MCP stdio"| Local["MCP npm local"]
-  Local -->|"HTTPS catalogue, sans secrets"| API
-  Local --> Cache[("Cache local validé")]
-  Local -->|"HTTPS direct + clés locales"| Provider["API fournisseur"]
+ CSV["CSV versionnés (13 gisements, fournisseurs, sources, ressources)"] --> Validator["Validation déterministe + diff + import idempotent"]
+ Validator --> Neon[("Neon PostgreSQL")]
+ Admin["Administrateur authentifié"] --> Portal["Portail web / Admin"]
+ Visitor["Visiteur public"] --> Portal
+ Portal --> API["API publique + API admin autorisée"]
+ API --> Neon
+ Cron["Contrôle quotidien (lots/reprises)"] --> API
+ Agent["Claude / OpenCode"] <-->|"MCP stdio"| MCP["Package npm local"]
+ MCP -->|"Catalogue HTTPS, aucun secret"| API
+ MCP --> Cache[("Cache local validé")]
+ MCP -->|"HTTPS direct, clés locales"| Providers["APIs fournisseurs"]
 ```
 
-## Découpage
-- **Portail** : présentation des gisements, recherche, fiches sources, administration protégée.
-- **Service central** : API publique versionnée du catalogue, API admin authentifiée, validation et publication des contrats, état des vérifications.
-- **MCP local** : SDK MCP officiel, stdio, découverte, validation stricte des contrats, cache TTL/stale, client HTTP sécurisé, gestion locale des secrets.
-- **Stockage** : Neon pour référentiel et historique de vérifications; migrations et import de références versionnés.
-- **Planification** : vérifier limites Vercel Hobby/cron avant de retenir le mécanisme; ne pas supposer un test quotidien garanti.
+## Domaines et contrats
+Gisement = taxonomie; fournisseur = organisation; source = point d'accès; ressource = dataset/service. Les contrats JSON déclaratifs sont indexés dans les CSV, validés par `schemaVersion`, et publiés par révision. API centrale de lecture versionnée; schéma OpenAPI à produire lors de l'implémentation.
 
 ## Sécurité
-- Contrats déclaratifs, version de schéma explicite, allowlist d'hôtes par source, blocage adresses privées et redirections non sûres, limites de taille/durée et quotas.
-- Ne jamais journaliser ni transmettre les clés fournisseur à World Data MCP.
-- Admin authentifié et autorisé côté serveur; API publique lecture seule.
-- Séparer version SemVer du moteur, `schemaVersion` des contrats et révision du catalogue.
+Validation stricte de l'origine des URLs et paramètres; défense SSRF/DNS rebinding/redirections; taille, timeout et quota; pas de code arbitraire. Secrets fournisseur locaux uniquement. Admin = session vérifiée et RBAC côté serveur, protection CSRF et audit; Vercel Deployment Protection ne suffit pas pour une route /admin sur un site public.
 
 ## Distribution
-Monorepo proposé `apps/portal`, `packages/mcp`, `packages/contracts`, `db/`, `data/reference/`. Package npm public, releases GitHub, publication contrôlée avec OIDC/trusted publishing. Les changements de catalogue ne nécessitent pas de release npm.
+Monorepo envisagé `apps/portal`, `packages/mcp`, `packages/contracts`, `db/`, `data/reference/v1/`. Node LTS supportée, npx sans installation globale, SDK MCP stdio, SemVer npm séparé du `schemaVersion` des contrats et de la révision catalogue. GitHub Actions, publication npm OIDC sous approbation explicite.
 
-## Points à instruire
-Étude des MCP/catalogues concurrents; disponibilité du nom npm; auth admin sur Hobby; quotas/cron Vercel; tests de compatibilité clients; choix du premier fournisseur.
+## Exploitation
+Vercel Hobby envisagé : cron quotidien par tâche avec déclenchement non précis; orchestrer par lots avec état persistant et reprise. Vérifier quotas de fonctions, durée et conditions d'usage avant déploiement. Neon avec branches preview isolées, migrations/CSV dry-run, production sur approbation.
+
+## Arbitrages
+Auth admin applicative; planificateur Hobby ou GitHub Actions/externe; fournisseur pilote; nom npm. Voir `docs/research/competitive-landscape.md` et `docs/research/vercel-hobby.md`.
