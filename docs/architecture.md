@@ -37,3 +37,6 @@ Vercel Hobby envisagé : cron quotidien par tâche avec déclenchement non préc
 
 ## Questions techniques ouvertes
 Nom npm, mécanisme précis de session admin, endpoint/indicateur World Bank, vérification des limites et conditions Hobby. Voir `docs/research/competitive-landscape.md` et `docs/research/vercel-hobby.md`.
+
+## Exigence impérative : Vercel Hobby
+Concevoir le portail et les fonctions API dans les limites réelles de Hobby : exécutions courtes, pas de worker permanent, pas de fonctionnalité Pro obligatoire. Les contrôles quotidiens Vercel Cron utilisent des lots bornés, un état/cursor Neon et des reprises sur exécutions ultérieures. Le MCP reste local. Vérifier la durée et les quotas sur le projet réel avant validation de la V1; un dépassement exige une adaptation du design, pas un upgrade implicite. Vérifier aussi les conditions d'utilisation Hobby.
