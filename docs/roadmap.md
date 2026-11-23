@@ -15,3 +15,6 @@ Dès M1, créer les **13 familles approuvées**; valider en parallèle **World B
 
 ## Gouvernance
 Backlog GitHub, issues avec critères vérifiables, PR par lot cohérent, pas de merge ni release sans approbation. Étude concurrentielle et contraintes Hobby à documenter avant choix final de l'architecture.
+
+## Critère transverse obligatoire
+Chaque jalon doit être validé sur **Vercel Hobby** sans upgrade Pro ni fonctionnalité payante obligatoire. L'issue de validation inclut la mesure des limites des fonctions, du cron quotidien, de l'auth admin et des quotas. Aucun jalon n'est considéré livré si cette contrainte n'est pas démontrée.
