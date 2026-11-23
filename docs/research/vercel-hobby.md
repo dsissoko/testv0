@@ -22,3 +22,6 @@
 - [Plan Hobby](https://vercel.com/docs/plans/hobby) : vérifier l'adéquation avec la nature et l'usage réel du projet avant déploiement (notamment conditions d'usage non commercial).
 - Recommandation : Vercel pour portail/API, auth applicative dédiée; cron quotidien uniquement si le volume réel et les limites de fonctions le permettent. Un service de vérification séparé reste une option.
 - Aucune configuration Vercel ni connexion Neon n'a été modifiée lors de cette étude.
+
+## Contrainte de projet actée
+**Vercel Hobby est obligatoire pour la V1.** Les choix techniques et tests d'acceptation doivent démontrer la compatibilité effective sans passage à Pro. Si un mécanisme dépasse les limites de durée, fréquence, quotas ou conditions d'utilisation, il doit être redimensionné ou remplacé par une option compatible; ne pas considérer l'upgrade comme une solution. Les usages commerciaux restent soumis aux conditions du plan.
