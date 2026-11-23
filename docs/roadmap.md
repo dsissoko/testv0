@@ -1,17 +1,17 @@
-# World Data MCP — Roadmap
+# World Data MCP — Roadmap corrigée
 
-**Statut :** proposition de jalons; pas de version npm implicite.
+**Statut :** proposition V1; jalons distincts du SemVer npm.
 
-| Jalon | Résultat utilisateur | Critère de sortie |
+| Jalon | Résultat | Sortie vérifiable |
 | --- | --- | --- |
-| M1 — Fondations | Catalogue minimal et contrat sûr | Architecture, schéma, seed versionné, API et vérifications reproductibles |
-| M2 — Portail | Sources consultables et administrables | Recherche publique, fiche source, auth admin, contrôle et publication |
-| M3 — MCP local | Agent interroge une API publique | npx, stdio, catalogue distant, cache, appel fournisseur direct |
-| M4 — Robustesse & distribution | MCP réutilisable sur plusieurs clients | Clés locales, mode dégradé, E2E, CI, SemVer, release npm autorisée |
-| M5 — Enrichissement | Catalogue diversifié et vérifié | Gisements supplémentaires, contrôles récurrents, historique et observabilité |
+| M1 — Catalogue V1 | Les 13 gisements existent dès l'initialisation | CSV versionnés, clés/relations, validations, import idempotent et protection des overrides |
+| M2 — Service central | Catalogue public consultable et administrable | API, portail, auth admin, provenance, contrats et vérifications horodatées |
+| M3 — MCP local | Agent interroge directement un fournisseur | npm/npx, stdio, découverte, contrat validé, API publique sans clé |
+| M4 — Distribution fiable | Usage multi-client reproductible | clé locale, cache hors ligne, tests E2E, compatibilité, releases autorisées, npm OIDC |
+| M5 — Enrichissement | Sources et connecteurs étendus dans les 13 familles | nouveaux fournisseurs/ressources/contrats, couverture et qualité mesurées |
 
-## Ordre de livraison
-Commencer par un **vertical slice** M1+M2+M3 : une source sans clé, du référentiel à l'agent, puis compléter les cas avec clé, indisponibilité et distribution.
+## Tranche verticale prioritaire
+Dès M1, créer les 13 familles; valider en parallèle une source publique sans clé de bout en bout (CSV → Neon → API → MCP). Ne pas confondre couverture taxonomique et couverture opérationnelle.
 
 ## Gouvernance
-GitHub issues = backlog opérationnel; PRs = unités d'implémentation; approbation explicite du merge et de la release. Avant développement, valider concurrence, Vercel Hobby/auth/cron, fournisseur initial et nom npm.
+Backlog GitHub, issues avec critères vérifiables, PR par lot cohérent, pas de merge ni release sans approbation. Étude concurrentielle et contraintes Hobby à documenter avant choix final de l'architecture.
